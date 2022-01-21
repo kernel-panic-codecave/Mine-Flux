@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "minecraft_flux",
+  "version": "${version}",
+  "name": "Minecraft Flux",
+  "description": "Cross platform energy api that is compatible with forge energy and works on both forge and fabric",
+  "authors": [
+    "Witherking25"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/minecraft-flux-api",
+    "sources": "https://github.com/withertech/Minecraft-Flux",
+    "issues": "https://github.com/withertech/Minecraft-Flux/issues"
+  },
+  "license": "GPL-3.0",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.withertech.fabric.MinecraftFluxFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": ">=0.46.1+1.18",
+    "minecraft": ">=1.18.1",
+    "architectury": ">=3.4.9"
+  }
+}
