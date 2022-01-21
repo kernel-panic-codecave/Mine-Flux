@@ -20,6 +20,7 @@ package com.withertech.fabric;
 
 import com.withertech.MineFlux;
 import com.withertech.example.fabric.MFBatteryBlockFabric;
+import com.withertech.example.fabric.MFBatteryItemFabric;
 import com.withertech.example.fabric.MFBatteryTileFabric;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -28,6 +29,7 @@ public class MineFluxFabric implements ModInitializer
 {
 	static
 	{
+		MineFlux.BATTERY_ITEM = MineFlux.ITEMS.register("battery_item", MFBatteryItemFabric::new);
 		MineFlux.BATTERY_BLOCK = MineFlux.BLOCKS.register("battery", MFBatteryBlockFabric::new);
 		MineFlux.BATTERY_TILE = MineFlux.TILES.register("battery", () -> FabricBlockEntityTypeBuilder.create(MFBatteryTileFabric::new, MineFlux.BATTERY_BLOCK.get()).build());
 	}

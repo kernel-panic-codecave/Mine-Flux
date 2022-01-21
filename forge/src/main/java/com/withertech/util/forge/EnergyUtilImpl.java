@@ -19,18 +19,29 @@
 package com.withertech.util.forge;
 
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.energy.CapabilityEnergy;
 
 public class EnergyUtilImpl
 {
-	public static int insertEnergy(BlockEntity tile, Direction facing, int energy, boolean simulate)
+	public static int insertTileEnergy(BlockEntity tile, Direction facing, int energy, boolean simulate)
 	{
 		return tile == null ? 0 : tile.getCapability(CapabilityEnergy.ENERGY, facing).map((storage) -> storage.receiveEnergy(energy, simulate)).orElse(0);
 	}
 
-	public static int extractEnergy(BlockEntity tile, Direction facing, int energy, boolean simulate)
+	public static int extractTileEnergy(BlockEntity tile, Direction facing, int energy, boolean simulate)
 	{
 		return tile == null ? 0 : tile.getCapability(CapabilityEnergy.ENERGY, facing).map((storage) -> storage.extractEnergy(energy, simulate)).orElse(0);
+	}
+
+	public static int insertItemEnergy(ItemStack stack, int energy, boolean simulate)
+	{
+		return stack == null ? 0 : stack.getCapability(CapabilityEnergy.ENERGY).map((storage) -> storage.receiveEnergy(energy, simulate)).orElse(0);
+	}
+
+	public static int extractItemEnergy(ItemStack stack, int energy, boolean simulate)
+	{
+		return stack == null ? 0 : stack.getCapability(CapabilityEnergy.ENERGY).map((storage) -> storage.extractEnergy(energy, simulate)).orElse(0);
 	}
 }

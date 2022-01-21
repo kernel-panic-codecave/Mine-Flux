@@ -8,9 +8,9 @@
     "Witherking25"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/minecraft-flux-api",
-    "sources": "https://github.com/withertech/Minecraft-Flux",
-    "issues": "https://github.com/withertech/Minecraft-Flux/issues"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/mine-flux-api",
+    "sources": "https://github.com/withertech/Mine-Flux",
+    "issues": "https://github.com/withertech/Mine-Flux/issues"
   },
   "license": "GPL-3.0",
   "icon": "icon.png",

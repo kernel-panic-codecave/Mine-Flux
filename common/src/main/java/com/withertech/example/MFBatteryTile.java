@@ -57,7 +57,7 @@ public abstract class MFBatteryTile extends BlockEntity implements IMFContainer
 		BlockPos outPos = this.getBlockPos().relative(side);
 		BlockEntity tileEntity = this.level.getBlockEntity(outPos);
 		int out = Math.min(energy.getMaxExtract(), this.energy.getEnergyStored());
-		this.energy.extractEnergy(EnergyUtil.insertEnergy(tileEntity, side.getOpposite(), out, false), false);
+		this.energy.extractEnergy(EnergyUtil.insertTileEnergy(tileEntity, side.getOpposite(), out, false), false);
 	}
 
 	@Override

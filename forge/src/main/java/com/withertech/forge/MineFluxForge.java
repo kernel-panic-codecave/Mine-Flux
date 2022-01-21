@@ -20,6 +20,7 @@ package com.withertech.forge;
 
 import com.withertech.MineFlux;
 import com.withertech.example.forge.MFBatteryBlockForge;
+import com.withertech.example.forge.MFBatteryItemForge;
 import com.withertech.example.forge.MFBatteryTileForge;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -31,6 +32,7 @@ public class MineFluxForge
 {
 	static
 	{
+		MineFlux.BATTERY_ITEM = MineFlux.ITEMS.register("battery_item", MFBatteryItemForge::new);
 		MineFlux.BATTERY_BLOCK = MineFlux.BLOCKS.register("battery", MFBatteryBlockForge::new);
 		MineFlux.BATTERY_TILE = MineFlux.TILES.register("battery", () -> BlockEntityType.Builder.of(MFBatteryTileForge::new, MineFlux.BATTERY_BLOCK.get()).build(null));
 	}

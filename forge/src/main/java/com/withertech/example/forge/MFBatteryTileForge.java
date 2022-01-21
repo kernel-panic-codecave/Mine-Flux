@@ -18,8 +18,10 @@
 
 package com.withertech.example.forge;
 
+import com.withertech.api.IMFStorage;
 import com.withertech.api.forge.MFStorageForge;
 import com.withertech.example.MFBatteryTile;
+import it.unimi.dsi.fastutil.objects.ObjectArrayPriorityQueue;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,6 +30,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class MFBatteryTileForge extends MFBatteryTile
 {
@@ -42,8 +46,9 @@ public class MFBatteryTileForge extends MFBatteryTile
 	public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
 	{
 		if (cap == CapabilityEnergy.ENERGY)
-			if (getStorageFor(side).isPresent())
-				return LazyOptional.of(() -> energy).cast();
+		{
+			return getStorageFor(side).map(imfStorage -> LazyOptional.of(() -> imfStorage)).orElse(LazyOptional.empty()).cast();
+		}
 		return super.getCapability(cap, side);
 	}
 }
