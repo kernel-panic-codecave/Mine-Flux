@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "minecraft_flux",
+  "id": "mine_flux",
   "version": "${version}",
-  "name": "Minecraft Flux",
+  "name": "Mine Flux",
   "description": "Cross platform energy api that is compatible with forge energy and works on both forge and fabric",
   "authors": [
     "Witherking25"
@@ -17,7 +17,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.withertech.fabric.MinecraftFluxFabric"
+      "com.withertech.fabric.MineFluxFabric"
     ]
   },
   "depends": {

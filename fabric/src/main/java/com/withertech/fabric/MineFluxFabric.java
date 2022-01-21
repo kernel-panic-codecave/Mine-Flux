@@ -16,18 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.withertech.example.fabric;
+package com.withertech.fabric;
 
-import com.withertech.api.fabric.MFStorageFabric;
-import com.withertech.example.MFBatteryTile;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
+import com.withertech.MineFlux;
+import com.withertech.example.fabric.MFBatteryBlockFabric;
+import com.withertech.example.fabric.MFBatteryTileFabric;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 
-public class MFBatteryTileFabric extends MFBatteryTile
+public class MineFluxFabric implements ModInitializer
 {
-	public MFBatteryTileFabric(BlockPos arg2, BlockState arg3)
+	static
 	{
-		super(arg2, arg3);
-		this.energy = new MFStorageFabric(1_000);
+		MineFlux.BATTERY_BLOCK = MineFlux.BLOCKS.register("battery", MFBatteryBlockFabric::new);
+		MineFlux.BATTERY_TILE = MineFlux.TILES.register("battery", () -> FabricBlockEntityTypeBuilder.create(MFBatteryTileFabric::new, MineFlux.BATTERY_BLOCK.get()).build());
+	}
+
+	@Override
+	public void onInitialize()
+	{
+		MineFlux.init();
 	}
 }
