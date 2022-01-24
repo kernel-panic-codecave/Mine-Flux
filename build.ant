@@ -1,0 +1,10 @@
+<project name="data" default="exportData">
+    <target name="exportData">
+        <move todir="common/src/main/resources" includeEmptyDirs="yes" verbose="true">
+            <fileset dir="forge/src/generated/resources">
+                <include name="**/*"/>
+                <exclude name=".cache/"/>
+            </fileset>
+        </move>
+    </target>
+</project>

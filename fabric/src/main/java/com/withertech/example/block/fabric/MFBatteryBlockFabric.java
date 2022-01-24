@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.withertech.example.fabric;
+package com.withertech.example.block.fabric;
 
-import com.withertech.example.MFBatteryBlock;
+import com.withertech.example.block.MFBatteryBlock;
 
 public class MFBatteryBlockFabric extends MFBatteryBlock
 {

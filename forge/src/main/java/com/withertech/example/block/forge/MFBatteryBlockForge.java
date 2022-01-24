@@ -16,18 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.withertech.example.fabric;
+package com.withertech.example.block.forge;
 
-import com.withertech.api.fabric.MFStorageFabric;
-import com.withertech.example.MFBatteryTile;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
+import com.withertech.example.block.MFBatteryBlock;
 
-public class MFBatteryTileFabric extends MFBatteryTile
+public class MFBatteryBlockForge extends MFBatteryBlock
 {
-	public MFBatteryTileFabric(BlockPos arg2, BlockState arg3)
-	{
-		super(arg2, arg3);
-		this.energy = new MFStorageFabric(1_000);
-	}
 }

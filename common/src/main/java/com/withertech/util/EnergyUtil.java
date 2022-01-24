@@ -18,45 +18,53 @@
 
 package com.withertech.util;
 
+import com.withertech.api.IMFStorage;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+import java.util.Optional;
+
 public class EnergyUtil
 {
-	@Deprecated(since = "v1.1.0")
+	@ExpectPlatform
 	public static int insertEnergy(BlockEntity tile, Direction facing, int energy, boolean simulate)
 	{
-		return insertTileEnergy(tile, facing, energy, simulate);
+		throw new AssertionError();
 	}
 
-	@Deprecated(since = "v1.1.0")
+	@ExpectPlatform
 	public static int extractEnergy(BlockEntity tile, Direction facing, int energy, boolean simulate)
 	{
-		return extractTileEnergy(tile, facing, energy, simulate);
+		throw new AssertionError();
 	}
 
 	@ExpectPlatform
-	public static int insertTileEnergy(BlockEntity tile, Direction facing, int energy, boolean simulate)
+	public static int insertEnergy(ItemStack stack, int energy, boolean simulate)
 	{
 		throw new AssertionError();
 	}
 
 	@ExpectPlatform
-	public static int extractTileEnergy(BlockEntity tile, Direction facing, int energy, boolean simulate)
+	public static int extractEnergy(ItemStack stack, int energy, boolean simulate)
+	{
+		throw new AssertionError();
+	}
+
+	public static Optional<IMFStorage> getEnergyStorage(BlockEntity tile)
+	{
+		return getEnergyStorage(tile, null);
+	}
+
+	@ExpectPlatform
+	public static Optional<IMFStorage> getEnergyStorage(BlockEntity tile, Direction facing)
 	{
 		throw new AssertionError();
 	}
 
 	@ExpectPlatform
-	public static int insertItemEnergy(ItemStack stack, int energy, boolean simulate)
-	{
-		throw new AssertionError();
-	}
-
-	@ExpectPlatform
-	public static int extractItemEnergy(ItemStack stack, int energy, boolean simulate)
+	public static Optional<IMFStorage> getEnergyStorage(ItemStack stack)
 	{
 		throw new AssertionError();
 	}

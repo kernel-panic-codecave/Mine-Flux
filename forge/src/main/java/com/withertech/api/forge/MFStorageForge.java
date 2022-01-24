@@ -55,18 +55,6 @@ public class MFStorageForge implements IMFStorage, IEnergyStorage, INBTSerializa
 	}
 
 	@Override
-	public int getMaxReceive()
-	{
-		return maxReceive;
-	}
-
-	@Override
-	public int getMaxExtract()
-	{
-		return maxExtract;
-	}
-
-	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate)
 	{
 		if (!canReceive())

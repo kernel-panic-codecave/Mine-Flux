@@ -7,6 +7,21 @@ architectury {
     forge()
 }
 
+loom {
+    forge {
+        mixinConfig "mine_flux-common.mixins.json"
+        mixinConfig "mine_flux.mixins.json"
+        dataGen {
+            mod "mine_flux"
+        }
+    }
+    launches {
+        data {
+            arg "--existing", file("../common/src/main/resources").absolutePath
+        }
+    }
+}
+
 configurations {
     common
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
@@ -20,7 +35,9 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
-    modImplementation "curse.maven:op-245211:3606616"
+    modRuntimeOnly "curse.maven:op-245211:3606616"
+    modRuntimeOnly "curse.maven:ie-231951:3587149"
+    modRuntimeOnly "curse.maven:ch-290433:3597302"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
@@ -106,5 +123,4 @@ curseforge {
         }
     }
 }
-
 rootProject.tasks.getByName("curseforgePublish").dependsOn tasks.getByName("curseforge")

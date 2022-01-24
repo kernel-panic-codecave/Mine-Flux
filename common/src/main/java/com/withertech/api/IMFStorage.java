@@ -50,10 +50,6 @@ public interface IMFStorage extends INBTSerializable<Tag>
 	 */
 	int getMaxEnergyStored();
 
-	int getMaxReceive();
-
-	int getMaxExtract();
-
 	/**
 	 * Returns if this storage can have energy extracted.
 	 * If this is false, then any calls to extractEnergy will return 0.

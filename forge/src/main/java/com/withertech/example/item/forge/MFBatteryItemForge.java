@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.withertech.example.forge;
+package com.withertech.example.item.forge;
 
 import com.withertech.api.IMFStorage;
 import com.withertech.api.forge.MFTagStorageForge;
-import com.withertech.example.MFBatteryItem;
+import com.withertech.example.item.MFBatteryItem;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -38,21 +38,22 @@ public class MFBatteryItemForge extends MFBatteryItem
 	@Override
 	protected Optional<IMFStorage> getStorageFor(ItemStack stack)
 	{
-		return Optional.of(new MFTagStorageForge(stack.getOrCreateTag(), 1_000));
+		return Optional.of(new MFTagStorageForge(stack.getOrCreateTag(), 5_000, 100));
 	}
 
 	@Nullable
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt)
 	{
-		return new ICapabilityProvider() {
+		return new ICapabilityProvider()
+		{
 			@NotNull
 			@Override
 			public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction arg)
 			{
 				if (capability == CapabilityEnergy.ENERGY)
 				{
-					getStorageFor(stack).map(imfStorage -> LazyOptional.of(() -> imfStorage)).orElse(LazyOptional.empty()).cast();
+					return getStorageFor(stack).map(imfStorage -> LazyOptional.of(() -> imfStorage)).orElse(LazyOptional.empty()).cast();
 				}
 				return LazyOptional.empty();
 			}

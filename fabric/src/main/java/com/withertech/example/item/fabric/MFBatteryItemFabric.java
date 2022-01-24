@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.withertech.example.fabric;
+package com.withertech.example.item.fabric;
 
 import com.withertech.api.IMFStorage;
 import com.withertech.api.fabric.MFTagStorageFabric;
-import com.withertech.example.MFBatteryItem;
+import com.withertech.example.item.MFBatteryItem;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +31,6 @@ public class MFBatteryItemFabric extends MFBatteryItem
 	@Override
 	protected Optional<IMFStorage> getStorageFor(@NotNull ItemStack stack)
 	{
-		return Optional.of(new MFTagStorageFabric(stack.getOrCreateTag(), 1_000));
+		return Optional.of(new MFTagStorageFabric(stack.getOrCreateTag(), 5_000, 100));
 	}
 }

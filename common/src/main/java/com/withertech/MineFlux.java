@@ -18,14 +18,18 @@
 
 package com.withertech;
 
-import com.withertech.example.MFBatteryBlock;
-import com.withertech.example.MFBatteryItem;
-import com.withertech.example.MFBatteryTile;
-import dev.architectury.platform.Platform;
+import com.withertech.example.block.MFBatteryBlock;
+import com.withertech.example.item.MFBatteryItem;
+import com.withertech.example.tile.MFBatteryTile;
+import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
@@ -41,13 +45,20 @@ public class MineFlux
 	public static RegistrySupplier<? extends MFBatteryBlock> BATTERY_BLOCK;
 	public static RegistrySupplier<BlockEntityType<? extends MFBatteryTile>> BATTERY_TILE;
 
+
+	public static final CreativeModeTab MINE_FLUX_TAB = CreativeTabRegistry.create(modLoc("mine_flux"), () -> new ItemStack(BATTERY_ITEM.get())).setRecipeFolderName("mine_flux");
+
+	public static RegistrySupplier<BlockItem> BATTERY_BLOCK_ITEM;
+
 	public static void init()
 	{
-		if (Platform.isDevelopmentEnvironment())
-		{
-			BLOCKS.register();
-			ITEMS.register();
-			TILES.register();
-		}
+		BLOCKS.register();
+		ITEMS.register();
+		TILES.register();
+	}
+
+	public static ResourceLocation modLoc(String loc)
+	{
+		return new ResourceLocation(MOD_ID, loc);
 	}
 }

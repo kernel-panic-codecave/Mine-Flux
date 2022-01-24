@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mine_flux:battery_block"
+    ]
+  },
+  "criteria": {
+    "battery_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:redstone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mine_flux:battery_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "battery_block",
+      "has_the_recipe"
+    ]
+  ]
+}

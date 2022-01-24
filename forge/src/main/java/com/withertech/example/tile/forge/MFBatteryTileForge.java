@@ -16,12 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.withertech.example.forge;
+package com.withertech.example.tile.forge;
 
-import com.withertech.api.IMFStorage;
 import com.withertech.api.forge.MFStorageForge;
-import com.withertech.example.MFBatteryTile;
-import it.unimi.dsi.fastutil.objects.ObjectArrayPriorityQueue;
+import com.withertech.example.tile.MFBatteryTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,14 +29,12 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-
 public class MFBatteryTileForge extends MFBatteryTile
 {
-	public MFBatteryTileForge(BlockPos arg2, BlockState arg3)
+	public MFBatteryTileForge(BlockPos pos, BlockState state)
 	{
-		super(arg2, arg3);
-		energy = new MFStorageForge(1_000);
+		super(pos, state);
+		this.energy = new MFStorageForge(1_000_000, 100);
 	}
 
 	@NotNull

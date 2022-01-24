@@ -1,0 +1,115 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "mine_flux:block/battery_frame"
+      }
+    },
+    {
+      "when": {
+        "north": "input"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_input"
+      }
+    },
+    {
+      "when": {
+        "east": "input"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_input",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "input"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_input",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "input"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_input",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "input"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_input",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "down": "input"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_input",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "north": "output"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_output"
+      }
+    },
+    {
+      "when": {
+        "east": "output"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_output",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "output"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_output",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "output"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_output",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "output"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_output",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "down": "output"
+      },
+      "apply": {
+        "model": "mine_flux:block/battery_output",
+        "x": 90
+      }
+    }
+  ]
+}
