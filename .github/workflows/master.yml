@@ -61,7 +61,7 @@ jobs:
             !**/*-dev.jar
             !**/*-shadow.jar
             !**/*-transformProduction*.jar
-      - name: Release to CurseForge
+      - name: Release to Maven and CurseForge
         uses: gradle/gradle-build-action@v2
         if: |
           contains(github.event.head_commit.message, '[release]') || github.event.inputs.norelease == 'true'
@@ -69,6 +69,7 @@ jobs:
           # currently unused, may want to use these for changelogs though!
           # GIT_COMMIT: ${{ github.event.after }}
           # GIT_PREVIOUS_COMMIT: ${{ github.event.before }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CURSE_API_KEY: ${{ secrets.CURSE_API_KEY }}
         with:
-          arguments: curseforgePublish --stacktrace --no-daemon
+          arguments: publish --stacktrace --no-daemon
