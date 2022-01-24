@@ -64,7 +64,7 @@ jobs:
       - name: Release to Maven and CurseForge
         uses: gradle/gradle-build-action@v2
         if: |
-          contains(github.event.head_commit.message, '[release]') || github.event.inputs.norelease == 'true'
+          contains(github.event.head_commit.message, '[release]') || github.event.inputs.release == 'true'
         env:
           # currently unused, may want to use these for changelogs though!
           # GIT_COMMIT: ${{ github.event.after }}
