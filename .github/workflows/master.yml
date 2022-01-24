@@ -10,8 +10,8 @@ on:
       - "master"
   workflow_dispatch:
     inputs:
-      norelease:
-        description: 'Do not publish'
+      release:
+        description: 'Publish'
         required: true
         default: 'false'
 
@@ -64,7 +64,7 @@ jobs:
       - name: Release to CurseForge
         uses: gradle/gradle-build-action@v2
         if: |
-          contains(github.event.head_commit.message, '[release]') && github.event.inputs.norelease != 'true'
+          contains(github.event.head_commit.message, '[release]') || github.event.inputs.norelease == 'true'
         env:
           # currently unused, may want to use these for changelogs though!
           # GIT_COMMIT: ${{ github.event.after }}
