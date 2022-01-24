@@ -2,10 +2,10 @@ name: Build and Release (1.18)
 
 on:
   push:
-    paths:
-      - '**.gradle'
-      - '**.properties'
-      - '**/src/**'
+#     paths:
+#       - '**.gradle'
+#       - '**.properties'
+#       - '**/src/**'
     branches:
       - "master"
   workflow_dispatch:
@@ -72,4 +72,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CURSE_API_KEY: ${{ secrets.CURSE_API_KEY }}
         with:
-          arguments: publish --stacktrace --no-daemon
+          arguments: publish curseforgePublish --stacktrace --no-daemon
