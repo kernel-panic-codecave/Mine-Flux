@@ -34,7 +34,7 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
-    modCompileOnlyApi "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_version}"
+    modApi "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_version}"
     modRuntimeOnly "curse.maven:op-245211:3606616"
     modRuntimeOnly "curse.maven:ie-231951:3587149"
     modRuntimeOnly "curse.maven:ch-290433:3597302"
