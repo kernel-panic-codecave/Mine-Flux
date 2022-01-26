@@ -19,13 +19,18 @@
 package com.withertech.forge;
 
 import com.withertech.MineFlux;
+import com.withertech.config.MFConfig;
 import com.withertech.data.DataGenerators;
 import com.withertech.example.block.forge.MFBatteryBlockForge;
 import com.withertech.example.item.forge.MFBatteryBlockItemForge;
 import com.withertech.example.item.forge.MFBatteryItemForge;
 import com.withertech.example.tile.forge.MFBatteryTileForge;
 import dev.architectury.platform.forge.EventBuses;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -45,6 +50,7 @@ public class MineFluxForge
 		FMLJavaModLoadingContext.get().getModEventBus().register(DataGenerators.class);
 		// Submit our event bus to let architectury register our content on the right time
 		EventBuses.registerModEventBus(MineFlux.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
+		if (MineFlux.CLOTH_CONFIG_PRESENT) AutoConfig.register(MFConfig.class, Toml4jConfigSerializer::new);
 		MineFlux.init();
 	}
 }

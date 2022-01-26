@@ -19,10 +19,14 @@
 package com.withertech.fabric;
 
 import com.withertech.MineFlux;
+import com.withertech.config.MFConfig;
 import com.withertech.example.block.fabric.MFBatteryBlockFabric;
 import com.withertech.example.item.fabric.MFBatteryBlockItemFabric;
 import com.withertech.example.item.fabric.MFBatteryItemFabric;
 import com.withertech.example.tile.fabric.MFBatteryTileFabric;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 
@@ -39,6 +43,7 @@ public class MineFluxFabric implements ModInitializer
 	@Override
 	public void onInitialize()
 	{
+		if (MineFlux.CLOTH_CONFIG_PRESENT) AutoConfig.register(MFConfig.class, GsonConfigSerializer::new);
 		MineFlux.init();
 	}
 }

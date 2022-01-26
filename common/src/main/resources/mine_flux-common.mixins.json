@@ -1,9 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.withertech.mixin.forge",
+  "package": "com.withertech.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "RecipeManagerMixin",
+    "ServerAdvancementManagerMixin"
   ],
   "client": [
   ],

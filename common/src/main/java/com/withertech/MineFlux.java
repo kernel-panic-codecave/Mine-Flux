@@ -18,47 +18,89 @@
 
 package com.withertech;
 
+import com.withertech.config.MFConfig;
 import com.withertech.example.block.MFBatteryBlock;
 import com.withertech.example.item.MFBatteryItem;
 import com.withertech.example.tile.MFBatteryTile;
+import com.withertech.recipe.RuntimeRecipe;
+import dev.architectury.event.events.common.LifecycleEvent;
+import dev.architectury.platform.Mod;
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.core.Registry;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.*;
 
 public class MineFlux
 {
 	public static final String MOD_ID = "mine_flux";
+
+	public static final boolean CLOTH_CONFIG_PRESENT = Platform.isModLoaded("cloth-config");
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registry.ITEM_REGISTRY);
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(MOD_ID, Registry.BLOCK_REGISTRY);
 	public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 
 	public static RegistrySupplier<? extends MFBatteryItem> BATTERY_ITEM;
+	public static final CreativeModeTab MINE_FLUX_TAB = CreativeTabRegistry.create(modLoc("mine_flux"), () -> (!CLOTH_CONFIG_PRESENT || AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent) ? new ItemStack(BATTERY_ITEM.get()) : ItemStack.EMPTY).setRecipeFolderName("mine_flux");
 	public static RegistrySupplier<? extends MFBatteryBlock> BATTERY_BLOCK;
 	public static RegistrySupplier<BlockEntityType<? extends MFBatteryTile>> BATTERY_TILE;
-
-
-	public static final CreativeModeTab MINE_FLUX_TAB = CreativeTabRegistry.create(modLoc("mine_flux"), () -> new ItemStack(BATTERY_ITEM.get())).setRecipeFolderName("mine_flux");
-
 	public static RegistrySupplier<BlockItem> BATTERY_BLOCK_ITEM;
+	public static Map<Pair<ResourceLocation, ResourceLocation>, RuntimeRecipe> RECIPES = new HashMap<>();
 
 	public static void init()
 	{
-		BLOCKS.register();
-		ITEMS.register();
-		TILES.register();
+		LifecycleEvent.SETUP.register(MineFlux::setup);
+		if (CLOTH_CONFIG_PRESENT) Platform.getMod(MOD_ID).registerConfigurationScreen(parent -> AutoConfig.getConfigScreen(MFConfig.class, parent).get());
+		if (!CLOTH_CONFIG_PRESENT || AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent)
+		{
+			BLOCKS.register();
+			ITEMS.register();
+			TILES.register();
+		}
 	}
+
+
+
 
 	public static ResourceLocation modLoc(String loc)
 	{
 		return new ResourceLocation(MOD_ID, loc);
+	}
+
+	private static void setup()
+	{
+		if (!CLOTH_CONFIG_PRESENT || AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent)
+		{
+			RECIPES.putAll(RuntimeRecipe.createRecipes(recipeConsumer ->
+			{
+				ShapedRecipeBuilder.shaped(MineFlux.BATTERY_BLOCK.get())
+						.pattern("iii")
+						.pattern("iri")
+						.pattern("iii")
+						.define('i', Items.IRON_INGOT)
+						.define('r', Items.REDSTONE_BLOCK)
+						.unlockedBy("battery_block", RuntimeRecipe.has(Items.REDSTONE))
+						.save(recipeConsumer);
+				ShapedRecipeBuilder.shaped(MineFlux.BATTERY_ITEM.get())
+						.pattern(" i ")
+						.pattern("iri")
+						.pattern("iii")
+						.define('i', Items.IRON_NUGGET)
+						.define('r', Items.REDSTONE)
+						.unlockedBy("battery_item", RuntimeRecipe.has(Items.REDSTONE))
+						.save(recipeConsumer);
+			}));
+		}
 	}
 }

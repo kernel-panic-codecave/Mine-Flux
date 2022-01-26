@@ -36,5 +36,17 @@ public class MFLangProvider extends LanguageProvider
 		addBlock(MineFlux.BATTERY_BLOCK, "Big Battery");
 		addItem(MineFlux.BATTERY_ITEM, "Battery");
 		add(((TranslatableComponent) MineFlux.MINE_FLUX_TAB.getDisplayName()).getKey(), "Mine Flux");
+		addConfigTranslations();
+	}
+
+	private String confKey(String key)
+	{
+		return "text.autoconfig.mine_flux." + key;
+	}
+
+	private void addConfigTranslations()
+	{
+		add(confKey("title"), "Mine Flux");
+		add(confKey("option.enableExampleContent"), "Enable Example Content");
 	}
 }
