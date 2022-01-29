@@ -63,3 +63,10 @@ mandatory = true
 versionRange = "[3.4.9,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.mine_flux]]
+modId = "cloth_config"
+mandatory = true
+versionRange = "[6.0.43,)"
+ordering = "AFTER"
+side = "BOTH"

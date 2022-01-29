@@ -4,7 +4,7 @@
   "package": "com.withertech.mixin.forge",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "IEnergyStorageMixin"
+    "com.withertech.mine_flux.mixin.forge.IEnergyStorageMixin"
   ],
   "client": [
   ],
