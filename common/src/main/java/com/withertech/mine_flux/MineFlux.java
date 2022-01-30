@@ -43,14 +43,12 @@ public class MineFlux
 {
 	public static final String MOD_ID = "mine_flux";
 
-	public static final boolean CLOTH_CONFIG_PRESENT = Platform.isModLoaded("cloth-config");
-
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registry.ITEM_REGISTRY);
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(MOD_ID, Registry.BLOCK_REGISTRY);
 	public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
 
 	public static RegistrySupplier<? extends MFBatteryItem> BATTERY_ITEM;
-	public static final CreativeModeTab MINE_FLUX_TAB = CreativeTabRegistry.create(modLoc("mine_flux"), () -> (!CLOTH_CONFIG_PRESENT || AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent) ? new ItemStack(BATTERY_ITEM.get()) : ItemStack.EMPTY).setRecipeFolderName("mine_flux");
+	public static final CreativeModeTab MINE_FLUX_TAB = CreativeTabRegistry.create(modLoc("mine_flux"), () -> (AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent) ? new ItemStack(BATTERY_ITEM.get()) : ItemStack.EMPTY).setRecipeFolderName("mine_flux");
 	public static RegistrySupplier<? extends MFBatteryBlock> BATTERY_BLOCK;
 	public static RegistrySupplier<BlockEntityType<? extends MFBatteryTile>> BATTERY_TILE;
 	public static RegistrySupplier<BlockItem> BATTERY_BLOCK_ITEM;
@@ -59,8 +57,8 @@ public class MineFlux
 	public static void init()
 	{
 		LifecycleEvent.SETUP.register(MineFlux::setup);
-		if (CLOTH_CONFIG_PRESENT) Platform.getMod(MOD_ID).registerConfigurationScreen(parent -> AutoConfig.getConfigScreen(MFConfig.class, parent).get());
-		if (!CLOTH_CONFIG_PRESENT || AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent)
+		Platform.getMod(MOD_ID).registerConfigurationScreen(parent -> AutoConfig.getConfigScreen(MFConfig.class, parent).get());
+		if (AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent)
 		{
 			BLOCKS.register();
 			ITEMS.register();
@@ -78,7 +76,7 @@ public class MineFlux
 
 	private static void setup()
 	{
-		if (!CLOTH_CONFIG_PRESENT || AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent)
+		if (AutoConfig.getConfigHolder(MFConfig.class).getConfig().enableExampleContent)
 		{
 			RECIPES.putAll(RuntimeRecipe.createRecipes(recipeConsumer ->
 			{

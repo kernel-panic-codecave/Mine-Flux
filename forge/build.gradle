@@ -133,6 +133,7 @@ curseforge {
             addGameVersion "Forge"
             relations {
                 requiredDependency "architectury-forge"
+                requiredDependency "cloth-config-forge"
             }
             mainArtifact(remapJar.archivePath) {
                 displayName = "[Forge $rootProject.minecraft_version] v$project.version"

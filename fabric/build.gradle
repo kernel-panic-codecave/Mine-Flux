@@ -117,6 +117,7 @@ curseforge {
             addGameVersion "Fabric"
             relations {
                 requiredDependency "architectury-fabric"
+                requiredDependency "cloth-config"
             }
             mainArtifact(remapJar.archivePath) {
                 displayName = "[Fabric $rootProject.minecraft_version] v$project.version"
