@@ -42,7 +42,7 @@ public class MineFluxFabric implements ModInitializer
 	@Override
 	public void onInitialize()
 	{
-		if (MineFlux.CLOTH_CONFIG_PRESENT) AutoConfig.register(MFConfig.class, GsonConfigSerializer::new);
+		AutoConfig.register(MFConfig.class, GsonConfigSerializer::new);
 		MineFlux.init();
 	}
 }

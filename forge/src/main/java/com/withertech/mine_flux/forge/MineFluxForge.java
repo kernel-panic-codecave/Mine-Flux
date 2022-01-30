@@ -48,7 +48,7 @@ public class MineFluxForge
 		FMLJavaModLoadingContext.get().getModEventBus().register(DataGenerators.class);
 		// Submit our event bus to let architectury register our content on the right time
 		EventBuses.registerModEventBus(MineFlux.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
-		if (MineFlux.CLOTH_CONFIG_PRESENT) AutoConfig.register(MFConfig.class, Toml4jConfigSerializer::new);
+		AutoConfig.register(MFConfig.class, Toml4jConfigSerializer::new);
 		MineFlux.init();
 	}
 }
