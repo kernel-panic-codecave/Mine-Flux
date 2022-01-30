@@ -21,6 +21,7 @@ package com.withertech.mine_flux.util;
 import com.withertech.mine_flux.api.IMFStorage;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
@@ -48,6 +49,30 @@ public class EnergyUtil
 
 	@ExpectPlatform
 	public static IMFStorage create(int capacity, int maxReceive, int maxExtract, int energy)
+	{
+		throw new AssertionError();
+	}
+
+	@ExpectPlatform
+	public static IMFStorage create(CompoundTag tag, int capacity)
+	{
+		throw new AssertionError();
+	}
+
+	@ExpectPlatform
+	public static IMFStorage create(CompoundTag tag, int capacity, int maxTransfer)
+	{
+		throw new AssertionError();
+	}
+
+	@ExpectPlatform
+	public static IMFStorage create(CompoundTag tag, int capacity, int maxReceive, int maxExtract)
+	{
+		throw new AssertionError();
+	}
+
+	@ExpectPlatform
+	public static IMFStorage create(CompoundTag tag, int capacity, int maxReceive, int maxExtract, int energy)
 	{
 		throw new AssertionError();
 	}

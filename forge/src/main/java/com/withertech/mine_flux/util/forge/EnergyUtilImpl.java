@@ -20,10 +20,14 @@ package com.withertech.mine_flux.util.forge;
 
 import com.withertech.mine_flux.api.IMFStorage;
 import com.withertech.mine_flux.api.forge.MFStorageForge;
+import com.withertech.mine_flux.api.forge.MFTagStorageForge;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.energy.CapabilityEnergy;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -59,23 +63,51 @@ public class EnergyUtilImpl
 		return stack != null ? stack.getCapability(CapabilityEnergy.ENERGY).map(storage -> (IMFStorage) storage) : Optional.empty();
 	}
 
-	public static IMFStorage create(int capacity)
+	@Contract("_ -> new")
+	public static @NotNull IMFStorage create(int capacity)
 	{
 		return new MFStorageForge(capacity);
 	}
 
-	public static IMFStorage create(int capacity, int maxTransfer)
+	@Contract("_, _ -> new")
+	public static @NotNull IMFStorage create(int capacity, int maxTransfer)
 	{
 		return new MFStorageForge(capacity, maxTransfer);
 	}
 
-	public static IMFStorage create(int capacity, int maxReceive, int maxExtract)
+	@Contract("_, _, _ -> new")
+	public static @NotNull IMFStorage create(int capacity, int maxReceive, int maxExtract)
 	{
 		return new MFStorageForge(capacity, maxReceive, maxExtract);
 	}
 
-	public static IMFStorage create(int capacity, int maxReceive, int maxExtract, int energy)
+	@Contract("_, _, _, _ -> new")
+	public static @NotNull IMFStorage create(int capacity, int maxReceive, int maxExtract, int energy)
 	{
 		return new MFStorageForge(capacity, maxReceive, maxExtract, energy);
+	}
+
+	@Contract("_, _ -> new")
+	public static @NotNull IMFStorage create(CompoundTag tag, int capacity)
+	{
+		return new MFTagStorageForge(tag, capacity);
+	}
+
+	@Contract("_, _, _ -> new")
+	public static @NotNull IMFStorage create(CompoundTag tag, int capacity, int maxTransfer)
+	{
+		return new MFTagStorageForge(tag, capacity, maxTransfer);
+	}
+
+	@Contract("_, _, _, _ -> new")
+	public static @NotNull IMFStorage create(CompoundTag tag, int capacity, int maxReceive, int maxExtract)
+	{
+		return new MFTagStorageForge(tag, capacity, maxReceive, maxExtract);
+	}
+
+	@Contract("_, _, _, _, _ -> new")
+	public static @NotNull IMFStorage create(CompoundTag tag, int capacity, int maxReceive, int maxExtract, int energy)
+	{
+		return new MFTagStorageForge(tag, capacity, maxReceive, maxExtract, energy);
 	}
 }
